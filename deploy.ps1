@@ -1,4 +1,4 @@
-# 一键部署：把 index.html 传到云主机，并让 nginx 立即用新版本
+﻿# 一键部署：把 index.html 传到云主机，并让 nginx 立即用新版本
 # 用法（在 C:\Users\zero\projects\my-site 目录下）：  .\deploy.ps1
 # 前提：~/.ssh/config 里配好了 Host clab（前面已经配过）
 

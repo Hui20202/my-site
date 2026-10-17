@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hui20202 · 第一台服务器</title>
+  <style>
+    /* ===== 基础样式：深色背景 + 樱花粉点缀 ===== */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: -apple-system, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+      background: radial-gradient(circle at 20% 15%, #241a2b 0%, #15121b 45%, #0c0a10 100%);
+      color: #f2eef5;
+      overflow: hidden;
+      position: relative;
+    }
+
+    /* ===== 樱花：几片慢慢飘落的花瓣（纯 CSS，不用图片）===== */
+    .petal {
+      position: fixed;
+      top: -8vh;
+      width: 12px; height: 12px;
+      background: radial-gradient(circle at 30% 30%, #ffd3e2, #ff8fb1);
+      border-radius: 12px 2px 12px 2px;
+      opacity: .55;
+      animation: fall linear infinite;
+      pointer-events: none;
+    }
+    @keyframes fall {
+      0%   { transform: translateY(-10vh) rotate(0deg); }
+      100% { transform: translateY(110vh) rotate(420deg); }
+    }
+
+    /* ===== 主卡片 ===== */
+    .card {
+      position: relative;
+      z-index: 2;
+      width: min(92vw, 620px);
+      padding: 44px 40px 36px;
+      border-radius: 22px;
+      background: rgba(255, 255, 255, .045);
+      border: 1px solid rgba(255, 143, 177, .22);
+      backdrop-filter: blur(10px);
+      box-shadow: 0 22px 60px rgba(0, 0, 0, .55), 0 0 0 1px rgba(255, 255, 255, .02) inset;
+    }
+
+    .tag {
+      display: inline-block;
+      font-size: 11px;
+      letter-spacing: .22em;
+      text-transform: uppercase;
+      color: #ff9db9;
+      border: 1px solid rgba(255, 143, 177, .35);
+      border-radius: 999px;
+      padding: 5px 12px;
+      margin-bottom: 22px;
+    }
+
+    h1 {
+      font-size: clamp(26px, 5vw, 38px);
+      font-weight: 700;
+      line-height: 1.25;
+      margin-bottom: 10px;
+      background: linear-gradient(100deg, #ffffff 20%, #ffb3c9 90%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .sub {
+      font-size: 14.5px;
+      line-height: 1.7;
+      color: #b9b0c4;
+      margin-bottom: 28px;
+    }
+    .sub code {
+      color: #ffb3c9;
+      font-family: ui-monospace, "Cascadia Code", Consolas, monospace;
+      font-size: 13.5px;
+    }
+
+    /* ===== 三张小信息卡 ===== */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 10px;
+      margin-bottom: 26px;
+    }
+    .cell {
+      padding: 13px 14px;
+      border-radius: 13px;
+      background: rgba(255, 255, 255, .035);
+      border: 1px solid rgba(255, 255, 255, .07);
+    }
+    .cell .k {
+      font-size: 10.5px;
+      letter-spacing: .13em;
+      text-transform: uppercase;
+      color: #8d8499;
+      margin-bottom: 6px;
+    }
+    .cell .v {
+      font-size: 14px;
+      font-weight: 600;
+      color: #f2eef5;
+      font-family: ui-monospace, "Cascadia Code", Consolas, monospace;
+    }
+
+    .foot {
+      font-size: 12px;
+      color: #7d7488;
+      border-top: 1px solid rgba(255, 255, 255, .07);
+      padding-top: 16px;
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .dot { color: #7ddc9a; }
+  </style>
+</head>
+<body>
+
+  <!-- 五片樱花，delay 让它们错开时间飘落 -->
+  <div class="petal" style="left:8%;  animation-duration:11s; animation-delay:0s;"></div>
+  <div class="petal" style="left:26%; animation-duration:14s; animation-delay:2.5s;"></div>
+  <div class="petal" style="left:48%; animation-duration:12s; animation-delay:5s;"></div>
+  <div class="petal" style="left:69%; animation-duration:16s; animation-delay:1.5s;"></div>
+  <div class="petal" style="left:88%; animation-duration:13s; animation-delay:4s;"></div>
+
+  <main class="card">
+    <span class="tag">first deploy</span>
+
+    <h1>我的第一台服务器<br>已经上线了。</h1>
+
+    <p class="sub">
+      这台页面不是存在我的笔记本里，而是跑在北大机房的一台云主机上。<br>
+      它 7×24 开着，任何人只要在校园网里访问
+      <code>http://10.129.246.200</code> 就能看到。
+    </p>
+
+    <div class="grid">
+      <div class="cell"><div class="k">host</div><div class="v">zero-first</div></div>
+      <div class="cell"><div class="k">system</div><div class="v">Ubuntu 24.04</div></div>
+      <div class="cell"><div class="k">served by</div><div class="v">nginx</div></div>
+    </div>
+
+    <div class="foot">
+      <span><span class="dot">●</span> 在线</span>
+      <span>搭建于 2026-10-14</span>
+      <span>Hui20202</span>
+    </div>
+  </main>
+
+</body>
+</html>
